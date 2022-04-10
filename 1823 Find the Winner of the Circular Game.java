@@ -4,6 +4,24 @@ class Solution {
         for (int i = 1; i <= n; ++i)
             res = (res + k) % i;
         return res + 1;
+        class Solution {
+    public int findTheWinner(int n, int k) {
+       int res = 0;
+        for (int i = 1; i <= n; ++i)
+            res = (res + k) % i;
+        return res + 1;
+        //  Method 2 
+        // Queue<Integer> qu = new LinkedList<>();
+        // for(int i = 1; i <= n; i++) {
+        //     qu.offer(i);
+        // }
+        // while(qu.size() != 1) {
+        //     for(int i = 1; i <= k-1; i++) {
+        //         qu.offer(qu.poll());
+        //     }
+        //     qu.poll();
+        // }
+        // return qu.poll();
         
     }
 }
