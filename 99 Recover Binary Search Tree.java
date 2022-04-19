@@ -1,23 +1,37 @@
 class Solution {
-    TreeNode prev=null,first=null,second=null;
+    TreeNode middle=null,first=null,last=null;
+    TreeNode prev;
     void inorder(TreeNode root){
         if(root==null)
             return ;
         inorder(root.left);
         if(prev!=null&&root.val<prev.val){
-            if(first==null)
+            if(first==null) {
                 first=prev;
-            second=root;
+                middle = root;
+            }
+            else {
+                last = root;
+            }
         }
         prev=root;
         inorder(root.right);
     }
+    
     public void recoverTree(TreeNode root) {
-        if(root==null)
+         if(root==null)
             return ; 
+        prev = new TreeNode(Integer.MIN_VALUE);
         inorder(root);
-        int temp=first.val;
-        first.val=second.val;
-        second.val=temp;
+        if(first!=null && last!=null) {
+            int t = first.val;
+            first.val = last.val;
+            last.val = t; 
+        }
+        else if(first!=null && middle!=null)  {
+            int t = first.val;
+            first.val = middle.val;
+            middle.val = t; 
+        }
     }
 }
