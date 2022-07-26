@@ -28,17 +28,27 @@ class Solution {
         
         //Using Tabulation Mehod
         
-        int arr[] = new int[n+1];
-        arr[0] = 1;
-        for(int i = 1; i < arr.length; i++) {
-            if(i == 1) {
-                arr[i] = arr[i-1];
-            }
-            else {
-                arr[i] = arr[i-1] + arr[i-2];
-            }
+        // int arr[] = new int[n+1];
+        // arr[0] = 1;
+        // for(int i = 1; i < arr.length; i++) {
+        //     if(i == 1) {
+        //         arr[i] = arr[i-1];
+        //     }
+        //     else {
+        //         arr[i] = arr[i-1] + arr[i-2];
+        //     }
+        // }
+        // return arr[n];
+        
+        // Space Optimized Dp using tabulation DP
+        int prev = 1;
+        int prev2 = 1;
+        for(int i = 2; i <= n; i++) {
+            int curri = prev + prev2;
+            prev2 = prev;
+            prev = curri;
         }
-        return arr[n];
+        return prev;
         
     }
 }
